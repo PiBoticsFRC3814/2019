@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -21,18 +23,31 @@ public class Robot extends IterativeRobot {
   private Joystick m_leftStick;
   private Joystick m_rightStick;
   WPI_TalonSRX _frontLeftMotor;
-	WPI_TalonSRX _frontRightMotor;
+  WPI_TalonSRX _frontRightMotor;
+  DoubleSolenoid exampleDouble; 
+  Compressor comp;
 
   @Override
   public void robotInit() {
     m_myRobot = new DifferentialDrive(new WPI_TalonSRX(3), new WPI_TalonSRX(4));
     m_leftStick = new Joystick(0);
     m_rightStick = new Joystick(1);
+    exampleDouble = new DoubleSolenoid(0, 1);
+    comp = new Compressor(0);
   }
 
   @Override
   public void teleopPeriodic() {
-    //m_myRobot.tankDrive(-m_leftStick.getY(), -m_rightStick.getY());
-    m_myRobot.arcadeDrive(-m_leftStick.getY(), m_leftStick.getX());
+    comp.setClosedLoopControl(true);
+    m_myRobot.tankDrive(-m_leftStick.getY(), -m_rightStick.getY());
+    //m_myRobot.arcadeDrive(-m_leftStick.getY(), m_leftStick.getX());
+    if (m_leftStick.getRawButton(1))
+    {
+      exampleDouble.set(DoubleSolenoid.Value.kForward);
+    }
+    else
+    {
+      exampleDouble.set(DoubleSolenoid.Value.kReverse);
+    }
   }
 }
