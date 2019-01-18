@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import com.ctre.phoenix.motorcontrol.can.*;
+import frc.robot.commands.driveJoystick;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -15,10 +17,28 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ExampleSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  WPI_TalonSRX leftFront;
+  WPI_TalonSRX rightFront;
+  WPI_TalonSRX leftBack;
+  WPI_TalonSRX rightBack;
+
+  public Drivetrain() {
+    leftFront = new WPI_TalonSRX(0);
+    leftBack = new WPI_TalonSRX(1);
+    rightFront = new WPI_TalonSRX(2);
+    rightBack = new WPI_TalonSRX(3);
+
+		differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+	}
+
+	public void arcadeDrive(double x, double y) {
+		differentialDrive.arcadeDrive(x, y);
+	}
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new driveJoystick());
   }
 }

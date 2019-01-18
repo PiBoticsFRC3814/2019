@@ -17,6 +17,7 @@ public class ExampleCommand extends Command {
   public ExampleCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_subsystem);
+    requires(Robot.m_drivetrain);
   }
 
   // Called just before this Command runs the first time
@@ -27,6 +28,8 @@ public class ExampleCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double x = Robot.m_oi.driveStick.getX();
+		double y = Robot.m_oi.driveStick.getY();
   }
 
   // Make this return true when this Command no longer needs to run execute()
