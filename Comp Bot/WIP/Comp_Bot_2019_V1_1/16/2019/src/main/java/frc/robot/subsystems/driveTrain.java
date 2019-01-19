@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class Drivetrain extends Subsystem {
+public class driveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   WPI_TalonSRX leftFront;
