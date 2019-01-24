@@ -8,15 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ExampleCommand extends Command {
-  public ExampleCommand() {
+public class driveJoystick extends Command {
+  public driveJoystick() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
     requires(Robot.m_drivetrain);
   }
 
@@ -28,8 +28,10 @@ public class ExampleCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double x = Robot.m_oi.driveStick.getX();
-		double y = Robot.m_oi.driveStick.getY();
+    
+    Joystick controller = Robot.m_OI.getDriverController();
+
+    Robot.m_drivetrain.arcadeDrive(controller.getx(), controller.gety());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,11 +43,13 @@ public class ExampleCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_drivetrain.arcadeDrive(0,0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+<<<<<<< HEAD
   
 public OI() {
   Joystick driveStick = new Joystick(1);
@@ -72,6 +73,22 @@ public OI() {
 
 
 }
+=======
+  private Joystick driveStick;
+
+  public OI() {
+    driveStick = driveStick();
+  }
+
+  private Joystick driveStick() {
+    Joystick controller = new Joystick(0);
+    return controller;
+  }
+
+  public Joystick getDriverStick() {
+    return driveStick;
+  }
+>>>>>>> 2dbc09d33d1ee07f811ef4f8a893aa106373082c
 }
 
 
