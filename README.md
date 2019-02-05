@@ -1,2 +1,2 @@
 # 2019
-2019 season code
+2019 season code - old not for use in 2019
